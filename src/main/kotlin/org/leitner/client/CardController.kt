@@ -4,6 +4,8 @@ import org.leitner.client.dto.CardDto
 import org.leitner.client.dto.CreateCardDto
 import org.leitner.client.service.CreateCardClient
 import org.leitner.client.service.FindCardsClient
+import org.leitner.exception.ExceptionCard
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
@@ -26,6 +28,8 @@ class CardController(
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE],
     )
+    @ResponseStatus(HttpStatus.CREATED)
+    @ExceptionHandler(ExceptionCard::class)
     fun createCard(
         @RequestBody createCardDto: CreateCardDto,
     ): CardDto {

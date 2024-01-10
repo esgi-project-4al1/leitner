@@ -5,8 +5,9 @@ import org.leitner.domain.contract.out.RegisterCardOut
 import org.leitner.domain.dto.Card
 import org.leitner.domain.dto.CardUserData
 import org.leitner.domain.mapper.MapperCard
-import org.leitner.domain.utils.toString
+import org.leitner.domain.utils.concat
 import org.leitner.domain.validation.ValidationCard
+import org.leitner.exception.ExceptionCard
 import org.springframework.stereotype.Service
 
 @Service
@@ -19,9 +20,7 @@ class CreateCard(
     override fun createCard(cardUserData: CardUserData): Card {
         val cardUserDataValidation = validation.verifyValidationOfCard(cardUserData)
         if (cardUserDataValidation.errors.isNotEmpty()){
-            throw Exception(
-                cardUserDataValidation.errors.toString(cardUserData.javaClass.name)
-            )
+            throw ExceptionCard(cardUserDataValidation.errors.concat())
         }
         val card = mapper.mapFirstUserCardToCard(cardUserData)
         return registerCardOut.registerCard(card)
