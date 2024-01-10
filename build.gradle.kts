@@ -21,7 +21,17 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springframework.boot:spring-boot-starter-web:3.2.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito:mockito-core:5.8.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+    implementation("io.konform:konform:0.4.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
+    //implementation("org.springframework.data:spring-data-mongodb:4.2.1")
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:3.2.1")
+
 }
 
 tasks.withType<KotlinCompile> {
